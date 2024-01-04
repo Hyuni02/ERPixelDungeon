@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.1'
+    }
+}
+
+allprojects {
+
+    ext {
+        appName = 'RogueNights'
+        appPackageName = 'com.shatteredpixel.tomorrowpixel'
+
+        appVersionCode = 582
+        appVersionName = '0.5.0'
+
+        appJavaCompatibility = JavaVersion.VERSION_1_8
+
+        appAndroidCompileSDK = 30
+        appAndroidMinSDK = 9
+        appAndroidTargetSDK = 30
+
+        gdxVersion = '1.9.10'
+    }
+    version = appVersionName
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+}
