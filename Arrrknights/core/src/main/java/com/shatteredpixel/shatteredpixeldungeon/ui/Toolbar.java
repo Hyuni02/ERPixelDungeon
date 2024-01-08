@@ -138,9 +138,11 @@ public class Toolbar extends Component {
 			}
 		});
 		
+		//인벤토리 버튼
 		add(btnInventory = new Tool(0, 0, 24, 26) {
 			private GoldIndicator gold;
 
+			//인벤토리 열기
 			@Override
 			protected void onClick() {
 				GameScene.show(new WndBag(Dungeon.hero.belongings.backpack, null, WndBag.Mode.ALL, null));
@@ -151,6 +153,7 @@ public class Toolbar extends Component {
 				return SPDAction.INVENTORY;
 			}
 			
+			//퀵 슬롯 변경
 			@Override
 			protected boolean onLongClick() {
 				Dungeon.quickslot.changeSlot();

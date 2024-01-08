@@ -124,6 +124,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.swing.plaf.synth.Region;
+
 public class GameScene extends PixelScene {
 
 	static GameScene scene;
@@ -182,6 +184,8 @@ public class GameScene extends PixelScene {
 			return;
 		}
 
+		//층별 배경음악 설정
+		//region
 		if (Dungeon.depth == 5)
 		{
 			Music.INSTANCE.play(Assets.Music.BOSS, true);
@@ -248,6 +252,7 @@ public class GameScene extends PixelScene {
 			else if (Dungeon.extrastage_Sea) Music.INSTANCE.play(Assets.Music.GAME6_IBERIA2, true);
 			else Music.INSTANCE.play(Assets.Music.GAME6_SIESTA2, true);
 		}
+		//endregion
 
 		SPDSettings.lastClass(Dungeon.hero.heroClass.ordinal());
 		
