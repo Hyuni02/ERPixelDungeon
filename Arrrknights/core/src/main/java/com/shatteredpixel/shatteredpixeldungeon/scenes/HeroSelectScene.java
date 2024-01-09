@@ -306,8 +306,6 @@ public class HeroSelectScene extends PixelScene {
 			add(button);
 			heroBtns.add(button);
 		}
-
-
 	}
 
 	private float uiAlpha;
@@ -384,7 +382,7 @@ public class HeroSelectScene extends PixelScene {
 					icon(new Image(Icons.CHEN.get()));
 					break;
 				case JACKIE:
-					icon(new Image(Icons.JACKIE.get())); //todo 재키 아이콘
+					icon(new Image(Icons.JACKIE.get()));
 					break;
 			}
 
