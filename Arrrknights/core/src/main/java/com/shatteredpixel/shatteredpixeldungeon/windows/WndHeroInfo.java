@@ -25,6 +25,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
@@ -74,6 +75,9 @@ public class WndHeroInfo extends WndTabbed {
 				break;
 			case CHEN:
 				tabIcon = new ItemSprite(ItemSpriteSheet.SHORTSWORD, null);
+				break;
+			case JACKIE:
+				tabIcon = new ItemSprite(ItemSpriteSheet.CHAINSAW, null); // todo 재키 정보탭 아이콘 - 손도끼
 				break;
 		}
 
@@ -186,6 +190,9 @@ public class WndHeroInfo extends WndTabbed {
 							new ItemSprite(ItemSpriteSheet.WEAPON_HOLDER),
 							new ItemSprite(ItemSpriteSheet.SCROLL_ISAZ)};
 					break;
+				case JACKIE:
+					icons = new Image[]{ new ItemSprite(ItemSpriteSheet.WORN_SHORTSWORD),
+							new ItemSprite(ItemSpriteSheet.SCROLL_ISAZ)};
 			}
 			for (Image im : icons) {
 				add(im);

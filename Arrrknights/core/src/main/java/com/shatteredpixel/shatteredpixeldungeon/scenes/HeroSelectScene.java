@@ -29,26 +29,18 @@ import com.shatteredpixel.shatteredpixeldungeon.Rankings;
 import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.TomorrowRogueNight;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
-import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
-import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Journal;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ActionIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.IconButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
-import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.StyledButton;
-import com.shatteredpixel.shatteredpixeldungeon.ui.TalentsPane;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndChallenges;
-import com.shatteredpixel.shatteredpixeldungeon.windows.WndHero;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndHeroInfo;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndMessage;
-import com.shatteredpixel.shatteredpixeldungeon.windows.WndTabbed;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.input.PointerEvent;
 import com.watabou.noosa.Camera;
@@ -59,7 +51,6 @@ import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.GameMath;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class HeroSelectScene extends PixelScene {
 
@@ -71,7 +62,7 @@ public class HeroSelectScene extends PixelScene {
 	private StyledButton startBtn;
 	private IconButton infoButton;
 	private IconButton challengeButton;
-	private IconButton chnageButton;
+	private IconButton changeButton;
 	private IconButton btnExit;
 	private int change;
 
@@ -180,8 +171,7 @@ public class HeroSelectScene extends PixelScene {
 			i++;
 		}
 
-		challengeButton = new IconButton(
-				Icons.get( SPDSettings.challenges() > 0 ? Icons.CHALLENGE_ON :Icons.CHALLENGE_OFF)){
+		challengeButton = new IconButton(Icons.get( SPDSettings.challenges() > 0 ? Icons.CHALLENGE_ON :Icons.CHALLENGE_OFF)){
 			@Override
 			protected void onClick() {
 				TomorrowRogueNight.scene().addToFront(new WndChallenges(SPDSettings.challenges(), true) {
@@ -210,7 +200,7 @@ public class HeroSelectScene extends PixelScene {
 			SPDSettings.challenges(0);
 		}
 
-		chnageButton = new IconButton(
+		changeButton = new IconButton(
 				Icons.get( Icons.HERO_CHANGES)){
 			@Override
 			protected void onClick() {
@@ -228,10 +218,10 @@ public class HeroSelectScene extends PixelScene {
 		add( btnExit );
 		btnExit.visible = !SPDSettings.intro() || Rankings.INSTANCE.totalNumber > 0;
 
-		chnageButton.setSize(21,21);
-		chnageButton.setPos( btnExit.width() - 21, 0 );
-		add(chnageButton);
-		chnageButton.visible = true;
+		changeButton.setSize(21,21);
+		changeButton.setPos( btnExit.width() - 21, 0 );
+		add(changeButton);
+		changeButton.visible = true;
 
 		PointerArea fadeResetter = new PointerArea(0, 0, Camera.main.width, Camera.main.height){
 			@Override
