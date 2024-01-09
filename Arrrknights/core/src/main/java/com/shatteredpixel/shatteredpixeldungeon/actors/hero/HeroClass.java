@@ -122,7 +122,8 @@
      HUNTRESS("huntress", HeroSubClass.SNIPER, HeroSubClass.WARDEN, HeroSubClass.STOME),
      ROSECAT("rosecat", HeroSubClass.DESTROYER, HeroSubClass.GUARDIAN, HeroSubClass.WAR),
      NEARL("nearl", HeroSubClass.KNIGHT, HeroSubClass.SAVIOR, HeroSubClass.FLASH),
-     CHEN("chen", HeroSubClass.SWORDMASTER, HeroSubClass.SPSHOOTER);
+     CHEN("chen", HeroSubClass.SWORDMASTER, HeroSubClass.SPSHOOTER),
+     JACKIE("Jackie", HeroSubClass.EXECUTIONER, HeroSubClass.SLAYER);
 
      private String title;
      private HeroSubClass[] subClasses;
@@ -166,6 +167,10 @@
 
              case CHEN:
                  initChen(hero);
+                 break;
+
+             case JACKIE:
+                 initJackie(hero);
                  break;
          }
 
@@ -211,6 +216,8 @@
                  return Badges.Badge.MASTERY_NEARL;
              case CHEN:
                  return Badges.Badge.MASTERY_CHEN;
+//             case JACKIE:
+//                 return Badges.Badge.MASTERY_WARRIOR; //todo 재키 배지
          }
          return null;
      }
@@ -405,6 +412,26 @@
          new DewVial().collect();
      }
 
+     private void initJackie(Hero hero){
+         (hero.belongings.weapon = new ChenSword()).identify();
+
+         new PotionBandolier().collect();
+         Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
+
+         new MagicalHolster().collect();
+         Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
+
+         new PotionOfStrength().identify();
+         new PotionOfParalyticGas().identify();
+         new ScrollOfWarp().identify();
+
+         SkillBook skillB;
+         skillB = new SkillBook();
+         skillB.quantity(1).collect();
+         Dungeon.quickslot.setSlot(0, skillB);
+         new DewVial().collect();
+     }
+
      public String title() {
          return Messages.get(HeroClass.class, title);
      }
@@ -493,6 +520,8 @@
                  return Assets.Sprites.NEARL;
              case CHEN:
                  return Assets.Sprites.CHEN;
+             case JACKIE:
+                 return Assets.Sprites.CHEN; //todo 재키 스프라이트 넣기
          }
      }
 
@@ -513,6 +542,8 @@
                  return Assets.Splashes.NEARL;
              case CHEN:
                  return Assets.Splashes.CHEN;
+             case JACKIE:
+                 return Assets.Splashes.CHEN; //todo 재키 스플레쉬 아트
          }
      }
 

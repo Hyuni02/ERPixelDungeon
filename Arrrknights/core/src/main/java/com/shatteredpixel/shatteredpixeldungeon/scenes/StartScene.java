@@ -43,6 +43,8 @@ import com.watabou.utils.DeviceCompat;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+
 //세이브슬롯 씬
 public class StartScene extends PixelScene {
 	
@@ -190,6 +192,9 @@ public class StartScene extends PixelScene {
 						case CHEN: //첸포인트
 							hero = new Image(Icons.CHEN.get());
 							break;
+						case JACKIE:
+							hero = new Image(Icons.JACKIE.get());
+							break;
 					}
 					add(hero);
 					
@@ -224,6 +229,9 @@ public class StartScene extends PixelScene {
 							break;
 						case CHEN: //첸포인트
 							hero = new Image(Icons.CHEN.get());
+							break;
+						case JACKIE:
+							hero = new Image(Icons.JACKIE.get());
 							break;
 					}
 
