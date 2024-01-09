@@ -91,6 +91,7 @@
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.FlametailSword;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Gloves;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Halberd;
+ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Hatchet;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Heamyo;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.ImageoverForm;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.KRISSVector;
@@ -173,7 +174,6 @@
                  initJackie(hero);
                  break;
          }
-
      }
 
      private static void initCommon(Hero hero) {
@@ -413,7 +413,7 @@
      }
 
      private void initJackie(Hero hero){
-         (hero.belongings.weapon = new ChenSword()).identify();
+         (hero.belongings.weapon = new Hatchet()).identify();
 
          new PotionBandolier().collect();
          Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
