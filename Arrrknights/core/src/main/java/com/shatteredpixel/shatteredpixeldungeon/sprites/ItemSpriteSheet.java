@@ -212,15 +212,15 @@ public class ItemSpriteSheet {
 
 	private static final int WEP_TIER1      =                               xy(1, 7);   //8 slots
 	public static final int WORN_SHORTSWORD = WEP_TIER1+0;
-	public static final int EX41          = WEP_TIER1+1;
+	public static final int EX41          	= WEP_TIER1+1;
 	public static final int GLOVES          = WEP_TIER1+2;
 	public static final int CHAINSAW          = WEP_TIER1+3;
 	public static final int DAGGER          = WEP_TIER1+4;
 	public static final int MAGES_STAFF     = WEP_TIER1+5;
-	public static final int HEAMYO     = WEP_TIER1+6;
-	public static final int YATO     = WEP_TIER1+7;
-	public static final int NEARL_AXE     = WEP_TIER1+8;
-	public static final int HATCHET = WEP_TIER1+9;
+	public static final int HEAMYO     		= WEP_TIER1+6;
+	public static final int YATO     		= WEP_TIER1+7;
+	public static final int NEARL_AXE     	= WEP_TIER1+8;
+	public static final int HATCHET 		= WEP_TIER1+9; //손도끼
 	static{
 		assignItemRect(WORN_SHORTSWORD, 16, 16);
 		assignItemRect(EX41, 			16, 16);
@@ -475,7 +475,7 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_MAGE      = ARMOR+6;
 	public static final int ARMOR_ROGUE     = ARMOR+7;
 	public static final int ARMOR_HUNTRESS  = ARMOR+8;
-	public static final int ARMOR_FABRIC = ARMOR+0;
+	public static final int ARMOR_FABRIC 	= ARMOR+0; //천 갑옷
 	static{
 		assignItemRect(ARMOR_CLOTH,     16, 16);
 		assignItemRect(ARMOR_LEATHER,   16, 16);
