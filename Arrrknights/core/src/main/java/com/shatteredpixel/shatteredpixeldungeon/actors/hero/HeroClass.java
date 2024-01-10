@@ -187,17 +187,17 @@
 
          new ScrollOfIdentify().identify();
          new FoodBag().collect();
-         new KazemaruWeapon().identify().collect();
-         new PotionOfStrength().quantity(40).collect();
-         new PotionOfExperience().quantity(40).collect();
-         new PotionOfHealing().quantity(40).collect();
-         new ScrollOfUpgrade().quantity(40).collect();
-         new Amulet().collect();
-         new Beowulf().identify().collect();
+         //new KazemaruWeapon().identify().collect();
+         //new PotionOfStrength().quantity(40).collect();
+         //new PotionOfExperience().quantity(40).collect();
+         //new PotionOfHealing().quantity(40).collect();
+         //new ScrollOfUpgrade().quantity(40).collect();
+         //new Amulet().collect();
+         //new Beowulf().identify().collect();
 
          new ScrollOfMagicMapping().identify().collect();
 
-         new Heamyo().collect();
+         //new Heamyo().collect();
 
          Dungeon.LimitedDrops.FOOD_BAG.drop();
      }
