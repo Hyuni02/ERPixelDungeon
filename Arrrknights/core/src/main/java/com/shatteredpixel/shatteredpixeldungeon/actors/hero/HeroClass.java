@@ -45,6 +45,8 @@
  import com.shatteredpixel.shatteredpixeldungeon.items.TomeOfMastery;
  import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
  import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClothArmor;
+ import com.shatteredpixel.shatteredpixeldungeon.items.armor.FabricArmor;
+ import com.shatteredpixel.shatteredpixeldungeon.items.armor.LeatherArmor;
  import com.shatteredpixel.shatteredpixeldungeon.items.armor.PlateArmor;
  import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.CloakOfShadows;
  import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.IsekaiItem;
@@ -177,8 +179,8 @@
      }
 
      private static void initCommon(Hero hero) {
-         Item i = new ClothArmor().identify();
-         if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (ClothArmor) i;
+         Item i = new FabricArmor().identify();
+         if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (FabricArmor) i;
 
          i = new Food();
          if (!Challenges.isItemBlocked(i)) i.collect();
