@@ -83,7 +83,22 @@ import java.util.LinkedHashMap;
 public enum Talent {
 
 	GENIUS(97,1),
-
+	//Jackie T1
+	TEMP_JACKIE_TIER1(352), //todo 임시 특성 구현하기
+	//Jackie T2
+	TEMP_JACKIE_TIER2(353),
+	//Jackie T3
+	TEMP_JACKIE_TIER3(354),
+	//Jackie T4
+	TEMP_JACKIE_TIER4(355),
+	//Executioner T3
+	TEMP_EXECUTIONER_TIER3(356),
+	//Executioner T4
+	TEMP_EXECUTIONER_TIER4(357),
+	//Slayer T3
+	TEMP_SLAYER_TIER3(358),
+	//Slayer T4
+	TEMP_SLAYER_TIER4(359),
 	//Warrior T1
 	HEARTY_MEAL(0), ARMSMASTERS_INTUITION(1), TEST_SUBJECT(2), IRON_WILL(3),
 	//Warrior T2
@@ -225,20 +240,20 @@ public enum Talent {
 
 
 
-	public static class ImprovisedProjectileCooldown extends FlavourBuff{};
-	public static class LethalMomentumTracker extends FlavourBuff{};
-	public static class WandPreservationCounter extends CounterBuff{};
-	public static class EmpoweredStrikeTracker extends FlavourBuff{};
-	public static class BountyHunterTracker extends FlavourBuff{};
-	public static class SWEEPTraker extends FlavourBuff{};
-	public static class RejuvenatingStepsCooldown extends FlavourBuff{};
-	public static class bombshotooldown extends FlavourBuff{};
-	public static class SeerShotCooldown extends FlavourBuff{};
-	public static class SilShotCooldown extends FlavourBuff{};
-	public static class PushAttackCooldown extends FlavourBuff{};
-	public static class foodIdentify extends CounterBuff{};
-	public static class BlazeBurstBuff extends CounterBuff{};
-	public static class ScoldingCooldown extends FlavourBuff{};
+	public static class ImprovisedProjectileCooldown extends FlavourBuff{}
+	public static class LethalMomentumTracker extends FlavourBuff{}
+	public static class WandPreservationCounter extends CounterBuff{}
+	public static class EmpoweredStrikeTracker extends FlavourBuff{}
+	public static class BountyHunterTracker extends FlavourBuff{}
+	public static class SWEEPTraker extends FlavourBuff{}
+	public static class RejuvenatingStepsCooldown extends FlavourBuff{}
+	public static class bombshotooldown extends FlavourBuff{}
+	public static class SeerShotCooldown extends FlavourBuff{}
+	public static class SilShotCooldown extends FlavourBuff{}
+	public static class PushAttackCooldown extends FlavourBuff{}
+	public static class foodIdentify extends CounterBuff{}
+	public static class BlazeBurstBuff extends CounterBuff{}
+	public static class ScoldingCooldown extends FlavourBuff{}
 
 	public static class GALLOPbuff extends Buff{
 		{
@@ -265,7 +280,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	public static class RadiantHeroCooldown extends FlavourBuff{
 		@Override
@@ -282,7 +297,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	public static class MyWishCooldown extends FlavourBuff{
 		@Override
@@ -299,7 +314,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	public static class LightClockCooldown extends FlavourBuff{
 		@Override
@@ -316,7 +331,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	int icon;
 	int maxPoints;
@@ -760,6 +775,9 @@ public enum Talent {
 			case CHEN:
 				Collections.addAll(tierTalents, PARING, POLICE_SENSE, CONTINUOUS_CUT, ZANTETSUKEN, GENIUS);
 				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, TEMP_JACKIE_TIER1);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			talents.get(0).put(talent, 0);
@@ -788,6 +806,9 @@ public enum Talent {
 				break;
 			case CHEN:
 				Collections.addAll(tierTalents, LATENT_MEAL, SCOLDING, DRAGONS_SWORD, GALLOP, TARGET_FOCUSING);
+				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, TEMP_JACKIE_TIER2);
 				break;
 		}
 		for (Talent talent : tierTalents){
@@ -818,6 +839,9 @@ public enum Talent {
 			case CHEN:
 				Collections.addAll(tierTalents);
 				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, TEMP_JACKIE_TIER3);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			talents.get(2).put(talent, 0);
@@ -846,6 +870,9 @@ public enum Talent {
 				break;
 			case CHEN:
 				Collections.addAll(tierTalents);
+				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, TEMP_JACKIE_TIER4);
 				break;
 		}
 		for (Talent talent : tierTalents){
@@ -929,6 +956,12 @@ public enum Talent {
 			case SPSHOOTER:
 				Collections.addAll(tierTalents, GORGEOUS_VACATION, TAC_DEF, PINPOINT, FRUGALITY, WATER_PLAY);
 				break;
+			case EXECUTIONER:
+				Collections.addAll(tierTalents, TEMP_EXECUTIONER_TIER3);
+				break;
+			case SLAYER:
+				Collections.addAll(tierTalents, TEMP_SLAYER_TIER3);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			talents.get(2).put(talent, 0);
@@ -996,6 +1029,12 @@ public enum Talent {
 				break;
 			case SPSHOOTER:
 				Collections.addAll(tierTalents, TAC_SHOT, TECHNICAL, ZERO_RANGE_SHOT, BF_RULL);
+				break;
+			case EXECUTIONER:
+				Collections.addAll(tierTalents, TEMP_EXECUTIONER_TIER4);
+				break;
+			case SLAYER:
+				Collections.addAll(tierTalents, TEMP_SLAYER_TIER4);
 				break;
 		}
 		for (Talent talent : tierTalents){

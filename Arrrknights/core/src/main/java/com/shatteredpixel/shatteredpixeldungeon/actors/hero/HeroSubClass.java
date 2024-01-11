@@ -145,9 +145,9 @@ public enum HeroSubClass {
 				return new Image(Assets.Interfaces.BUFFS_LARGE, 192, 80, 16, 16);
 				
 			case EXECUTIONER:
-				return new Image(Assets.Interfaces.BUFFS_LARGE, 0, 80, 16, 16); // todo 처형자 아이콘
+				return new Image(Assets.Interfaces.BUFFS_LARGE, 0, 64, 16, 16); // todo 처형자 아이콘
 			case SLAYER:
-				return new Image(Assets.Interfaces.BUFFS_LARGE, 0, 80, 16, 16); // todo 학살자 아이콘
+				return new Image(Assets.Interfaces.BUFFS_LARGE, 16, 64, 16, 16); // todo 학살자 아이콘
 		}
 	}
 	

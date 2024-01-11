@@ -218,8 +218,8 @@
                  return Badges.Badge.MASTERY_NEARL;
              case CHEN:
                  return Badges.Badge.MASTERY_CHEN;
-//             case JACKIE:
-//                 return Badges.Badge.MASTERY_WARRIOR; //todo 재키 배지
+             case JACKIE:
+                 return Badges.Badge.MASTERY_JACKIE; //todo 재키 배지
          }
          return null;
      }
@@ -488,6 +488,7 @@
          }
          switch (this) {
              case WARRIOR:
+             case JACKIE:
              default:
                  return Assets.Sprites.BLAZE;
              case MAGE:
@@ -523,7 +524,7 @@
              case CHEN:
                  return Assets.Sprites.CHEN;
              case JACKIE:
-                 return Assets.Sprites.CHEN; //todo 재키 스프라이트 넣기
+                 return Assets.Sprites.JACKIE; //todo 재키 스프라이트 변경
          }
      }
 
@@ -545,7 +546,7 @@
              case CHEN:
                  return Assets.Splashes.CHEN;
              case JACKIE:
-                 return Assets.Splashes.CHEN; //todo 재키 스플레쉬 아트
+                 return Assets.Splashes.JACKIE; //todo 재키 스플레쉬 아트 변경
          }
      }
 
@@ -593,6 +594,7 @@
 
          switch (this) {
              case WARRIOR:
+             case JACKIE:
              default:
                  return true;
              case MAGE:
@@ -613,6 +615,7 @@
      public String unlockMsg() {
          switch (this) {
              case WARRIOR:
+             case JACKIE:
              default:
                  return "";
              case MAGE:

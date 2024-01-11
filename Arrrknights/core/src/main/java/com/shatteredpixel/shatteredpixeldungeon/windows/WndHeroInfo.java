@@ -52,7 +52,7 @@ public class WndHeroInfo extends WndTabbed {
 	private static int MARGIN = 2;
 
 	public WndHeroInfo( HeroClass cl ){
-
+		//영웅 탭 아이콘
 		Image tabIcon;
 		switch (cl){
 			case WARRIOR: default:
@@ -77,7 +77,7 @@ public class WndHeroInfo extends WndTabbed {
 				tabIcon = new ItemSprite(ItemSpriteSheet.SHORTSWORD, null);
 				break;
 			case JACKIE:
-				tabIcon = new ItemSprite(ItemSpriteSheet.CHAINSAW, null); // todo 재키 정보탭 아이콘 - 손도끼
+				tabIcon = new ItemSprite(ItemSpriteSheet.CHAINSAW, null); // todo 재키 정보탭 아이콘 - 반고부
 				break;
 		}
 
@@ -96,6 +96,7 @@ public class WndHeroInfo extends WndTabbed {
 			}
 		});
 
+		//특성 탭 아이콘
 		talentInfo = new TalentInfoTab(cl);
 		add(talentInfo);
 		talentInfo.setSize(WIDTH, MIN_HEIGHT);

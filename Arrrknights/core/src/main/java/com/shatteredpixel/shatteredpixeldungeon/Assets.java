@@ -319,6 +319,7 @@ public class Assets {
 		public static final String ROSECAT	= "splashes/rosemary.png";
 		public static final String NEARL	= "splashes/nearl.png";
 		public static final String CHEN	= "splashes/chen.jpg";
+		public static final String JACKIE	= "splashes/jackie.jpg";
 	}
 
 	public static class Sprites {
@@ -332,6 +333,7 @@ public class Assets {
 		public static final String ROSEMARY	= "sprites/rosemary.png";
 		public static final String NEARL	= "sprites/nearl.png";
 		public static final String CHEN	= "sprites/chen.png";
+		public static final String JACKIE = "sprites/jackie.png";
 		public static final String RISKARM	= "sprites/riskarm.png";
 		public static final String AVATARS	= "sprites/avatars.png";
 		public static final String PET		= "sprites/pet.png";
