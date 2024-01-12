@@ -110,7 +110,7 @@ public enum Talent {
 	ENDORPHIN(0),//엔도르핀
 	DISMANTLE_GOLIATH(0),//열세극복
 	ANIMAREAPER(0),//영혼흡수장치
-	OPEN_WOUNDS(0),//상처 악과
+	OPEN_WOUNDS(0),//상처 악화
 	CARNIVORE(0),//육식주의
 	//저항 특성
 	DIAMOND_SHARD(0),//금강
