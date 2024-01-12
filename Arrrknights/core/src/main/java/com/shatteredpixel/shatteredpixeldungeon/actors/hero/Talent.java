@@ -85,6 +85,9 @@ public enum Talent {
 
 	GENIUS(97,1),
 	//Jackie T1
+	SHARP_AXE(352),
+	RUNAWAY(353),
+	BLOODFEST(354),
 	TEMP_JACKIE_TIER1(352), //todo 임시 특성 구현하기
 	//Jackie T2
 	TEMP_JACKIE_TIER2(353),
@@ -401,7 +404,7 @@ public enum Talent {
 
 	//특성 강화
 	public static void onTalentUpgraded( Hero hero, Talent talent){
-		DeviceCompat.log("GAME",hero.name() + "(이)가 " + talent + "(을)를 강화");
+		DeviceCompat.log("DEBUG",hero.name() + "(이)가 " + talent + "(을)를 강화");
 		//지니어스
 		if (talent == GENIUS) {
 			new ScrollOfIdentify().execute(hero);
@@ -489,7 +492,7 @@ public enum Talent {
 
 	//음식 섭취
 	public static void onFoodEaten( Hero hero, float foodVal, Item foodSource ){
-		DeviceCompat.log("GAME", hero.name() + "(이)가 " + foodSource.name() + " 섭취");
+		DeviceCompat.log("DEBUG", hero.name() + "(이)가 " + foodSource.name() + " 섭취");
 		//푸짐한 식사
 		if (hero.hasTalent(HEARTY_MEAL)){
 			//3/5 HP healed, when hero is below 25% health
@@ -602,7 +605,7 @@ public enum Talent {
 
 	//회복 물약 사용
 	public static void onHealingPotionUsed( Hero hero ){
-		DeviceCompat.log("GAME", hero.name() + "(이)가 회복 물약 사용");
+		DeviceCompat.log("DEBUG", hero.name() + "(이)가 회복 물약 사용");
 		//정신력 회복
 		if (hero.hasTalent(RESTORED_WILLPOWER)){
 			BrokenSeal.WarriorShield shield = hero.buff(BrokenSeal.WarriorShield.class);
@@ -652,7 +655,7 @@ public enum Talent {
 
 	//강화 주문서 사용
 	public static void onUpgradeScrollUsed( Hero hero ){
-		DeviceCompat.log("GAME",hero.name() + "(이)가 강화 주문서 사용");
+		DeviceCompat.log("DEBUG",hero.name() + "(이)가 강화 주문서 사용");
 		//정신 회복의 강화
 		if (hero.hasTalent(RECOVERY_UPGRADE))
 		{
@@ -665,7 +668,7 @@ public enum Talent {
 	}
 
 	public static void onArtifactUsed( Hero hero ){
-		DeviceCompat.log("GAME","onArtifactUsed");
+		DeviceCompat.log("DEBUG","onArtifactUsed");
 		if (hero.hasTalent(ENHANCED_RINGS)){
 			Buff.prolong(hero, EnhancedRings.class, 2.5f*hero.pointsInTalent(ENHANCED_RINGS));
 		}
@@ -674,7 +677,7 @@ public enum Talent {
 
 	//스킬북 사용
 	public static void onSkillUsed( Hero hero) {
-		DeviceCompat.log("GAME",hero.name() +"(이)가 스킬 사용");
+		DeviceCompat.log("DEBUG",hero.name() +"(이)가 스킬 사용");
 		//아츠 흡수
 		if (hero.hasTalent(ENERGIZING_UPGRADE)){
 			MagesStaff staff = hero.belongings.getItem(MagesStaff.class);
@@ -706,7 +709,7 @@ public enum Talent {
 
 	//아이템 장착
 	public static void onItemEquipped( Hero hero, Item item ){
-		DeviceCompat.log("GAME",hero.name()+"(이)가 " + item.name()+" 장착");
+		DeviceCompat.log("DEBUG",hero.name()+"(이)가 " + item.name()+" 장착");
 		//장인의 직감
 		if (hero.pointsInTalent(ARMSMASTERS_INTUITION) == 2 && (item instanceof Weapon || item instanceof Armor)){
 			item.identify();
@@ -724,7 +727,7 @@ public enum Talent {
 
 	//아이템 획득
 	public static void onItemCollected( Hero hero, Item item ){
-		DeviceCompat.log("GAME", hero.name() + "(이)가 " + item.name()+" 획득");
+		DeviceCompat.log("DEBUG", hero.name() + "(이)가 " + item.name()+" 획득");
 		//늑대의 직감
 		if (hero.pointsInTalent(THIEFS_INTUITION) == 2){
 			if (item instanceof Ring) ((Ring) item).setKnown();
@@ -733,7 +736,7 @@ public enum Talent {
 
 	//note that IDing can happen in alchemy scene, so be careful with VFX here
 	public static void onItemIdentified( Hero hero, Item item ){
-		DeviceCompat.log("GAME",hero.name()+"(이)가 " + item.name()+"을(를) 감정");
+		DeviceCompat.log("DEBUG",hero.name()+"(이)가 " + item.name()+"을(를) 감정");
 		//엘리트 오퍼레이터
 		if (hero.hasTalent(TEST_SUBJECT)){
 			//heal for 4 / 6
@@ -766,7 +769,7 @@ public enum Talent {
 	}
 
 	public static int onAttackProc( Hero hero, Char enemy, int dmg ){
-		DeviceCompat.log("GAME",hero.name() + "(이)가 "+ enemy.name()+  "을(를) 공격 ("+dmg+"의 피해)");
+		DeviceCompat.log("DEBUG",hero.name() + "(이)가 "+ enemy.name()+  "을(를) 공격 ("+dmg+"의 피해)");
 		//암살자의 신조
 		if (hero.hasTalent(Talent.ASSASSINSCREED)
 				&& enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)
@@ -800,6 +803,10 @@ public enum Talent {
 				}
 				enemy.buff(FollowupStrikeTracker.class).detach();
 			}
+		}
+		//날카로운 도끼
+		if(hero.hasTalent(Talent.SHARP_AXE)){
+			//todo 적에게 출혈 부여
 		}
 
 		return dmg;
@@ -845,7 +852,7 @@ public enum Talent {
 				Collections.addAll(tierTalents, PARING, POLICE_SENSE, CONTINUOUS_CUT, ZANTETSUKEN, GENIUS);
 				break;
 			case JACKIE:
-				Collections.addAll(tierTalents, TEMP_JACKIE_TIER1);
+				Collections.addAll(tierTalents, SHARP_AXE, RUNAWAY, BLOODFEST);
 				break;
 		}
 		for (Talent talent : tierTalents){

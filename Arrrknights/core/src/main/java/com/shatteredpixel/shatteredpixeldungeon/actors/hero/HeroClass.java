@@ -189,7 +189,7 @@
          new FoodBag().collect();
          //new KazemaruWeapon().identify().collect();
          //new PotionOfStrength().quantity(40).collect();
-         //new PotionOfExperience().quantity(40).collect();
+         new PotionOfExperience().quantity(40).identify().collect();
          new PotionOfHealing().quantity(40).identify().collect();
          //new ScrollOfUpgrade().quantity(40).collect();
          //new Amulet().collect();
