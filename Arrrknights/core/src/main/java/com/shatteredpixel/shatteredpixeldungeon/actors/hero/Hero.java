@@ -1444,6 +1444,7 @@ public class Hero extends Char {
         resting = fullRest;
     }
 
+    //공격
     @Override
     public int attackProc(final Char enemy, int damage) {
         damage = super.attackProc(enemy, damage);

@@ -746,6 +746,7 @@ public abstract class Mob extends Char {
 		}
 	}
 	
+	//사망
 	@Override
 	public void die( Object cause ) {
 		DeviceCompat.log("DEBUG", this.name() + " 쓰러짐");

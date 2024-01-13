@@ -566,7 +566,6 @@ public enum Talent {
 		if (hero.hasTalent(LATENT_MEAL) && !(foodSource instanceof HornOfPlenty)){
 			Buff.affect(hero, Invisibility.class, hero.pointsInTalent(LATENT_MEAL));
 		}
-
 		if (hero.subClass == HeroSubClass.DESTROYER)
 			Buff.affect(hero, Rose_Force.class, 10f);
 	}
