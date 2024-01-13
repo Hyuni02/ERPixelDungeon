@@ -43,7 +43,7 @@ public class Meat extends Food {
                 switch (Random.Int(5)) {
                     case 0:
                         GLog.w(Messages.get(Meat.class, "foodpoison"));
-                        Buff.affect(hero, FoodPoison.class, FoodPoison.DURATION);
+                        Buff.affect(hero, FoodPoison.class, FoodPoison.DURATION - 2);
                         break;
                 }
             }
