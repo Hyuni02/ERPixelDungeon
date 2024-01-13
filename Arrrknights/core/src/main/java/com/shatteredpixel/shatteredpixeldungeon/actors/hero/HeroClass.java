@@ -58,6 +58,7 @@
  import com.shatteredpixel.shatteredpixeldungeon.items.bags.ScrollHolder;
  import com.shatteredpixel.shatteredpixeldungeon.items.bags.VelvetPouch;
  import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
+ import com.shatteredpixel.shatteredpixeldungeon.items.food.Bread;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.MeatCutlet;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.ingredients.Egg;
@@ -193,6 +194,7 @@
          new PotionOfHealing().quantity(40).identify().collect();
          //new ScrollOfUpgrade().quantity(40).collect();
          //new Amulet().collect();
+         new Bread().quantity(2).identify().collect();
          //new Beowulf().identify().collect();
 
          new ScrollOfMagicMapping().identify().collect();
