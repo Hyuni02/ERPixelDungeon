@@ -853,7 +853,7 @@ public enum Talent {
 				Collections.addAll(tierTalents, PARING, POLICE_SENSE, CONTINUOUS_CUT, ZANTETSUKEN, GENIUS);
 				break;
 			case JACKIE:
-				Collections.addAll(tierTalents, SHARP_AXE, RUNAWAY, BLOODFEST);
+				Collections.addAll(tierTalents, SHARP_AXE, RUNAWAY, BLOODFEST, CARNIVORE);
 				break;
 		}
 		for (Talent talent : tierTalents){

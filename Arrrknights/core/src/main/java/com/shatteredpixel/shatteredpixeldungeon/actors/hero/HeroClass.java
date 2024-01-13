@@ -60,6 +60,7 @@
  import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.Bread;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
+ import com.shatteredpixel.shatteredpixeldungeon.items.food.Meat;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.MeatCutlet;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.Ramen;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.ingredients.Egg;
@@ -195,7 +196,7 @@
          new PotionOfHealing().quantity(40).identify().collect();
          //new ScrollOfUpgrade().quantity(40).collect();
          //new Amulet().collect();
-         new Ramen().quantity(2).collect();
+         new Meat().quantity(16).collect();
          //new Beowulf().identify().collect();
 
          new ScrollOfMagicMapping().identify().collect();
