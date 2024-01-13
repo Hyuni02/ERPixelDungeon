@@ -197,6 +197,7 @@
          //new ScrollOfUpgrade().quantity(40).collect();
          //new Amulet().collect();
          new Meat().quantity(16).collect();
+         new PotionOfLiquidFlame().quantity(40).identify().collect();
          //new Beowulf().identify().collect();
 
          new ScrollOfMagicMapping().identify().collect();

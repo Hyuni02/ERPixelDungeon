@@ -5,7 +5,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
 public class Ramen extends Food{
     {
-        image = ItemSpriteSheet.RATION; //todo 라면 이미지 변경
+        image = ItemSpriteSheet.PASTY; //todo 라면 이미지 변경
         energy = Hunger.HUNGRY/2;
     }
 }
