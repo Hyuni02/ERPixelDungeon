@@ -3,16 +3,16 @@ package com.shatteredpixel.shatteredpixeldungeon.items.food;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.FoodPoison;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Hunger;
-import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.MeatPower_Mystery;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Roots;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Slow;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.WellFed;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.items.AnnihilationGear;
+import com.shatteredpixel.shatteredpixeldungeon.items.bags.FoodBag;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
@@ -37,45 +37,21 @@ public class Meat extends Food {
 
     public static void effect(Hero hero) {
         if (Dungeon.hero.hasTalent(Talent.CARNIVORE)) {
-            DeviceCompat.log("GAME", "육식주의 발동");
+            DeviceCompat.log("DEBUG", "육식주의 발동");
             Dungeon.hero.HP = Math.min(Dungeon.hero.HT, Dungeon.hero.HP + 3 * Dungeon.hero.pointsInTalent(Talent.CARNIVORE));
             if (Dungeon.hero.pointsInTalent(Talent.CARNIVORE) != 2) {
-                switch (Random.Int(8)) { //todo 고기 디버프 변경
+                switch (Random.Int(5)) {
                     case 0:
-                        GLog.w(Messages.get(MysteryMeat.class, "hot"));
-                        Buff.affect(hero, Burning.class).reignite(hero);
-                        break;
-                    case 1:
-                        GLog.w(Messages.get(MysteryMeat.class, "legs"));
-                        Buff.prolong(hero, Roots.class, Roots.DURATION * 2f);
-                        break;
-                    case 2:
-                        GLog.w(Messages.get(MysteryMeat.class, "not_well"));
-                        Buff.affect(hero, Poison.class).set(hero.HT / 5);
-                        break;
-                    case 3:
-                        GLog.w(Messages.get(MysteryMeat.class, "stuffed"));
-                        Buff.prolong(hero, Slow.class, Slow.DURATION);
+                        GLog.w(Messages.get(Meat.class, "foodpoison"));
+                        Buff.affect(hero, FoodPoison.class, FoodPoison.DURATION);
                         break;
                 }
             }
         } else {
-            switch (Random.Int(5)) { //todo 고기 디버프 변경
+            switch (Random.Int(3)) {
                 case 0:
-                    GLog.w(Messages.get(MysteryMeat.class, "hot"));
-                    Buff.affect(hero, Burning.class).reignite(hero);
-                    break;
-                case 1:
-                    GLog.w(Messages.get(MysteryMeat.class, "legs"));
-                    Buff.prolong(hero, Roots.class, Roots.DURATION * 2f);
-                    break;
-                case 2:
-                    GLog.w(Messages.get(MysteryMeat.class, "not_well"));
-                    Buff.affect(hero, Poison.class).set(hero.HT / 5);
-                    break;
-                case 3:
-                    GLog.w(Messages.get(MysteryMeat.class, "stuffed"));
-                    Buff.prolong(hero, Slow.class, Slow.DURATION);
+                    GLog.w(Messages.get(Meat.class, "foodpoison"));
+                    Buff.affect(hero, FoodPoison.class, FoodPoison.DURATION);
                     break;
             }
         }
