@@ -45,6 +45,8 @@
  import com.shatteredpixel.shatteredpixeldungeon.items.TomeOfMastery;
  import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
  import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClothArmor;
+ import com.shatteredpixel.shatteredpixeldungeon.items.armor.FabricArmor;
+ import com.shatteredpixel.shatteredpixeldungeon.items.armor.LeatherArmor;
  import com.shatteredpixel.shatteredpixeldungeon.items.armor.PlateArmor;
  import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.CloakOfShadows;
  import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.IsekaiItem;
@@ -56,6 +58,7 @@
  import com.shatteredpixel.shatteredpixeldungeon.items.bags.ScrollHolder;
  import com.shatteredpixel.shatteredpixeldungeon.items.bags.VelvetPouch;
  import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
+ import com.shatteredpixel.shatteredpixeldungeon.items.food.Bread;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.MeatCutlet;
  import com.shatteredpixel.shatteredpixeldungeon.items.food.ingredients.Egg;
@@ -91,6 +94,7 @@
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.FlametailSword;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Gloves;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Halberd;
+ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Hatchet;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Heamyo;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.ImageoverForm;
  import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.KRISSVector;
@@ -122,7 +126,8 @@
      HUNTRESS("huntress", HeroSubClass.SNIPER, HeroSubClass.WARDEN, HeroSubClass.STOME),
      ROSECAT("rosecat", HeroSubClass.DESTROYER, HeroSubClass.GUARDIAN, HeroSubClass.WAR),
      NEARL("nearl", HeroSubClass.KNIGHT, HeroSubClass.SAVIOR, HeroSubClass.FLASH),
-     CHEN("chen", HeroSubClass.SWORDMASTER, HeroSubClass.SPSHOOTER);
+     CHEN("chen", HeroSubClass.SWORDMASTER, HeroSubClass.SPSHOOTER),
+     JACKIE("Jackie", HeroSubClass.EXECUTIONER, HeroSubClass.SLAYER);
 
      private String title;
      private HeroSubClass[] subClasses;
@@ -167,30 +172,34 @@
              case CHEN:
                  initChen(hero);
                  break;
-         }
 
+             case JACKIE:
+                 initJackie(hero);
+                 break;
+         }
      }
 
      private static void initCommon(Hero hero) {
-         Item i = new ClothArmor().identify();
-         if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (ClothArmor) i;
+         Item i = new FabricArmor().identify();
+         if (!Challenges.isItemBlocked(i)) hero.belongings.armor = (FabricArmor) i;
 
          i = new Food();
          if (!Challenges.isItemBlocked(i)) i.collect();
 
          new ScrollOfIdentify().identify();
          new FoodBag().collect();
-         new KazemaruWeapon().identify().collect();
-         new PotionOfStrength().quantity(40).collect();
-         new PotionOfExperience().quantity(40).collect();
-         new PotionOfHealing().quantity(40).collect();
-         new ScrollOfUpgrade().quantity(40).collect();
-         new Amulet().collect();
-         new Beowulf().identify().collect();
+         //new KazemaruWeapon().identify().collect();
+         //new PotionOfStrength().quantity(40).collect();
+         new PotionOfExperience().quantity(40).identify().collect();
+         new PotionOfHealing().quantity(40).identify().collect();
+         //new ScrollOfUpgrade().quantity(40).collect();
+         //new Amulet().collect();
+         new Bread().quantity(2).identify().collect();
+         //new Beowulf().identify().collect();
 
          new ScrollOfMagicMapping().identify().collect();
 
-         new Heamyo().collect();
+         //new Heamyo().collect();
 
          Dungeon.LimitedDrops.FOOD_BAG.drop();
      }
@@ -211,6 +220,8 @@
                  return Badges.Badge.MASTERY_NEARL;
              case CHEN:
                  return Badges.Badge.MASTERY_CHEN;
+             case JACKIE:
+                 return Badges.Badge.MASTERY_JACKIE; //todo 재키 배지
          }
          return null;
      }
@@ -405,6 +416,26 @@
          new DewVial().collect();
      }
 
+     private void initJackie(Hero hero){
+         (hero.belongings.weapon = new Hatchet()).identify();
+
+         new PotionBandolier().collect();
+         Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
+
+         new MagicalHolster().collect();
+         Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
+
+         new PotionOfStrength().identify();
+         new PotionOfParalyticGas().identify();
+         new ScrollOfWarp().identify();
+
+         SkillBook skillB;
+         skillB = new SkillBook();
+         skillB.quantity(1).collect();
+         Dungeon.quickslot.setSlot(0, skillB);
+         new DewVial().collect();
+     }
+
      public String title() {
          return Messages.get(HeroClass.class, title);
      }
@@ -459,6 +490,7 @@
          }
          switch (this) {
              case WARRIOR:
+             case JACKIE:
              default:
                  return Assets.Sprites.BLAZE;
              case MAGE:
@@ -493,6 +525,8 @@
                  return Assets.Sprites.NEARL;
              case CHEN:
                  return Assets.Sprites.CHEN;
+             case JACKIE:
+                 return Assets.Sprites.JACKIE; //todo 재키 스프라이트 변경
          }
      }
 
@@ -513,6 +547,8 @@
                  return Assets.Splashes.NEARL;
              case CHEN:
                  return Assets.Splashes.CHEN;
+             case JACKIE:
+                 return Assets.Splashes.JACKIE;
          }
      }
 
@@ -560,6 +596,7 @@
 
          switch (this) {
              case WARRIOR:
+             case JACKIE:
              default:
                  return true;
              case MAGE:
@@ -580,6 +617,7 @@
      public String unlockMsg() {
          switch (this) {
              case WARRIOR:
+             case JACKIE:
              default:
                  return "";
              case MAGE:

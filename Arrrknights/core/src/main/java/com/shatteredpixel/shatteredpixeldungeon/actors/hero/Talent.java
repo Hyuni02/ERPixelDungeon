@@ -27,6 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ArtifactRecharge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Bleeding;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Blindness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
@@ -73,6 +74,7 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
@@ -83,6 +85,58 @@ import java.util.LinkedHashMap;
 public enum Talent {
 
 	GENIUS(97,1),
+	//Jackie T1
+	SHARP_AXE(352),
+	RUNAWAY(353),
+	BLOODFEST(354),
+	TEMP_JACKIE_TIER1(352), //todo 임시 특성 구현하기
+	//Jackie T2
+	TEMP_JACKIE_TIER2(353),
+	//Jackie T3
+	TEMP_JACKIE_TIER3(354),
+	//Jackie T4
+	TEMP_JACKIE_TIER4(355),
+	//Executioner T3
+	TEMP_EXECUTIONER_TIER3(356),
+	//Executioner T4
+	TEMP_EXECUTIONER_TIER4(357),
+	//Slayer T3
+	TEMP_SLAYER_TIER3(358),
+	//Slayer T4
+	TEMP_SLAYER_TIER4(359),
+
+	//파괴 특성
+	FRAILTY_INFLICTION(0),//취약
+	VAMPIRIC_BLOODLINE(0),//흡혈마
+	RED_SPRITE(0),//벽력
+	ADRENALINE(0),//아드레날린
+	STOPPING_POWER(0),//철갑탄
+	ENDORPHIN(0),//엔도르핀
+	DISMANTLE_GOLIATH(0),//열세극복
+	ANIMAREAPER(0),//영혼흡수장치
+	OPEN_WOUNDS(0),//상처 악화
+	CARNIVORE(0),//육식주의
+	//저항 특성
+	DIAMOND_SHARD(0),//금강
+	IRONCLAD(0),//불괴
+	HEAVY_KNEEPADS(0),//빛의 수호
+	BITTER_RETRIBUTION(0),//응징
+	EMBOLDEN(0),//대담
+	DINE_N_DASH(0),//먹보
+	CAVALCADE(0),//특공대
+	UNWAVERING_MENTALITY(0),//불굴
+	CAMPING_GUDIE(0),//캠핑 가이드
+	STEADFAST(0),//견고
+	//지원 특성
+	HEALING_FACTOR(0),//초재생
+	AMPLIFICATION_DRONE(0),//증폭 드론
+	HEALING_DRONE(0),//치유 드론
+	SENTINEL(0),//헌신
+	THRONSHACKLES(0),//가시덤불
+	URBAN_WARFARE(0),//시가전
+	LOGISTICS(0),//후방보급
+	PENNY_PINCHER(0),//할인쿠폰
+	THRILL_OF_THE_HUNT(0),//사냥의 전율
 
 	//Warrior T1
 	HEARTY_MEAL(0), ARMSMASTERS_INTUITION(1), TEST_SUBJECT(2), IRON_WILL(3),
@@ -225,20 +279,20 @@ public enum Talent {
 
 
 
-	public static class ImprovisedProjectileCooldown extends FlavourBuff{};
-	public static class LethalMomentumTracker extends FlavourBuff{};
-	public static class WandPreservationCounter extends CounterBuff{};
-	public static class EmpoweredStrikeTracker extends FlavourBuff{};
-	public static class BountyHunterTracker extends FlavourBuff{};
-	public static class SWEEPTraker extends FlavourBuff{};
-	public static class RejuvenatingStepsCooldown extends FlavourBuff{};
-	public static class bombshotooldown extends FlavourBuff{};
-	public static class SeerShotCooldown extends FlavourBuff{};
-	public static class SilShotCooldown extends FlavourBuff{};
-	public static class PushAttackCooldown extends FlavourBuff{};
-	public static class foodIdentify extends CounterBuff{};
-	public static class BlazeBurstBuff extends CounterBuff{};
-	public static class ScoldingCooldown extends FlavourBuff{};
+	public static class ImprovisedProjectileCooldown extends FlavourBuff{}
+	public static class LethalMomentumTracker extends FlavourBuff{}
+	public static class WandPreservationCounter extends CounterBuff{}
+	public static class EmpoweredStrikeTracker extends FlavourBuff{}
+	public static class BountyHunterTracker extends FlavourBuff{}
+	public static class SWEEPTraker extends FlavourBuff{}
+	public static class RejuvenatingStepsCooldown extends FlavourBuff{}
+	public static class bombshotooldown extends FlavourBuff{}
+	public static class SeerShotCooldown extends FlavourBuff{}
+	public static class SilShotCooldown extends FlavourBuff{}
+	public static class PushAttackCooldown extends FlavourBuff{}
+	public static class foodIdentify extends CounterBuff{}
+	public static class BlazeBurstBuff extends CounterBuff{}
+	public static class ScoldingCooldown extends FlavourBuff{}
 
 	public static class GALLOPbuff extends Buff{
 		{
@@ -265,7 +319,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	public static class RadiantHeroCooldown extends FlavourBuff{
 		@Override
@@ -282,7 +336,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	public static class MyWishCooldown extends FlavourBuff{
 		@Override
@@ -299,7 +353,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	public static class LightClockCooldown extends FlavourBuff{
 		@Override
@@ -316,7 +370,7 @@ public enum Talent {
 		public String desc() {
 			return Messages.get(this, "desc", dispTurns());
 		}
-	};
+	}
 
 	int icon;
 	int maxPoints;
@@ -349,20 +403,24 @@ public enum Talent {
 		return Messages.get(this, name() + ".desc");
 	}
 
+	//특성 강화
 	public static void onTalentUpgraded( Hero hero, Talent talent){
+		DeviceCompat.log("DEBUG",hero.name() + "(이)가 " + talent + "(을)를 강화");
+		//지니어스
 		if (talent == GENIUS) {
 			new ScrollOfIdentify().execute(hero);
 		}
-
+		//자연의 은혜
 		if (talent == NATURES_BOUNTY){
 			if ( hero.pointsInTalent(NATURES_BOUNTY) == 1) Buff.count(hero, NatureBerriesAvailable.class, 4);
 			else                                           Buff.count(hero, NatureBerriesAvailable.class, 2);
 		}
-
+		//장인의 직감
 		if (talent == ARMSMASTERS_INTUITION && hero.pointsInTalent(ARMSMASTERS_INTUITION) == 2){
 			if (hero.belongings.weapon != null) hero.belongings.weapon.identify();
 			if (hero.belongings.armor != null)  hero.belongings.armor.identify();
 		}
+		//늑대의 직감
 		if (talent == THIEFS_INTUITION && hero.pointsInTalent(THIEFS_INTUITION) == 2){
 			if (hero.belongings.ring instanceof Ring) hero.belongings.ring.identify();
 			if (hero.belongings.misc instanceof Ring) hero.belongings.misc.identify();
@@ -376,16 +434,16 @@ public enum Talent {
 			if (hero.belongings.ring instanceof Ring) hero.belongings.ring.setKnown();
 			if (hero.belongings.misc instanceof Ring) ((Ring) hero.belongings.misc).setKnown();
 		}
-
+		//해방
 		if (talent == LIBERATION && Dungeon.hero.belongings.getItem(MagesStaff.class) != null) {
 			MagesStaff Item = Dungeon.hero.belongings.getItem(MagesStaff.class);
 			Item.updateWand(false);
 		}
-
+		//천리안
 		if (talent == FARSIGHT){
 			Dungeon.observe();
 		}
-
+		//기사의 경험
 		if (talent == EXPERIENCE && hero.pointsInTalent(EXPERIENCE) == 2){
 			for (Item item : Dungeon.hero.belongings){
 				if (item instanceof Armor){
@@ -393,7 +451,7 @@ public enum Talent {
 				}
 			}
 		}
-
+		//경찰의 직감
 		if (talent == POLICE_SENSE && hero.pointsInTalent(POLICE_SENSE) == 2){
 			for (Item item : Dungeon.hero.belongings){
 				if (item instanceof Weapon){
@@ -433,7 +491,10 @@ public enum Talent {
 	public static class CachedRationsDropped extends CounterBuff{};
 	public static class NatureBerriesAvailable extends CounterBuff{};
 
+	//음식 섭취
 	public static void onFoodEaten( Hero hero, float foodVal, Item foodSource ){
+		DeviceCompat.log("DEBUG", hero.name() + "(이)가 " + foodSource.name() + " 섭취");
+		//푸짐한 식사
 		if (hero.hasTalent(HEARTY_MEAL)){
 			//3/5 HP healed, when hero is below 25% health
 			if (hero.HP <= hero.HT/4) {
@@ -445,11 +506,13 @@ public enum Talent {
 				hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(HEARTY_MEAL));
 			}
 		}
+		//강철의 위장
 		if (hero.hasTalent(IRON_STOMACH)){
 			if (hero.cooldown() > 0) {
 				Buff.affect(hero, WarriorFoodImmunity.class, hero.cooldown());
 			}
 		}
+		//힘이 나는 식사
 		if (hero.hasTalent(EMPOWERING_MEAL)){
 			//2/3 bonus wand damage for next 3 zaps
 			Buff.affect( hero, WandEmpower.class).set(2 + hero.pointsInTalent(EMPOWERING_MEAL), 3);
@@ -460,25 +523,27 @@ public enum Talent {
 			Buff.prolong( hero, Recharging.class, 2 + 3*(hero.pointsInTalent(ENERGIZING_MEAL)) );
 			ScrollOfRecharging.charge( hero );
 		}
+		//신비한 식사
 		if (hero.hasTalent(MYSTICAL_MEAL)){
 			//3/5 turns of recharging
 			Buff.affect( hero, ArtifactRecharge.class).set(1.5f*(hero.pointsInTalent(MYSTICAL_MEAL))).ignoreHornOfPlenty = foodSource instanceof HornOfPlenty;
 			ScrollOfRecharging.charge( hero );
 		}
+		//활기 넘치는 식사
 		if (hero.hasTalent(INVIGORATING_MEAL)){
 			//effectively 1/2 turns of haste
 			Buff.prolong( hero, Haste.class, 0.67f+hero.pointsInTalent(INVIGORATING_MEAL));
 		}
-
+		//몸이 가벼운 식사
 		if (hero.hasTalent(LIGHTNESSMEAL)){
 			if (foodSource instanceof HornOfPlenty == false) {
 			Buff.prolong( hero, Levitation.class,  5 * hero.pointsInTalent(LIGHTNESSMEAL));}
 		}
-
+		//엄청 빠른 식사
 		if (hero.hasTalent(FASTMEAL)){
 			Buff.affect( hero, Barrier.class).incShield(hero.HT * hero.pointsInTalent(FASTMEAL) / 33);
 		}
-
+		//빛이나는 식사
 		if (hero.hasTalent(SHINING_MEAL)){
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 				if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos] && !mob.properties().contains(Char.Property.NPC) && !(mob instanceof Shopkeeper)) {
@@ -489,7 +554,7 @@ public enum Talent {
 				}
 			}
 		}
-
+		//식전 기도
 		if (hero.hasTalent(COMBAT_MEAL)){
 			SealOfLight Seal = hero.belongings.getItem(SealOfLight.class);
 			if (hero.belongings.getItem(SealOfLight.class) != null)
@@ -497,11 +562,10 @@ public enum Talent {
 				Seal.charge(hero, 1 + hero.pointsInTalent(COMBAT_MEAL) * 3);
 			}
 		}
-
+		//잠복 식사
 		if (hero.hasTalent(LATENT_MEAL) && !(foodSource instanceof HornOfPlenty)){
 			Buff.affect(hero, Invisibility.class, hero.pointsInTalent(LATENT_MEAL));
 		}
-
 		if (hero.subClass == HeroSubClass.DESTROYER)
 			Buff.affect(hero, Rose_Force.class, 10f);
 	}
@@ -539,7 +603,10 @@ public enum Talent {
 		return factor;
 	}
 
+	//회복 물약 사용
 	public static void onHealingPotionUsed( Hero hero ){
+		DeviceCompat.log("DEBUG", hero.name() + "(이)가 회복 물약 사용");
+		//정신력 회복
 		if (hero.hasTalent(RESTORED_WILLPOWER)){
 			BrokenSeal.WarriorShield shield = hero.buff(BrokenSeal.WarriorShield.class);
 			if (shield != null){
@@ -548,6 +615,7 @@ public enum Talent {
 			}
 			Buff.detach(hero, Burning.class);
 		}
+		//자연의 은총
 		if (hero.hasTalent(RESTORED_NATURE)){
 			ArrayList<Integer> grassCells = new ArrayList<>();
 			for (int i : PathFinder.NEIGHBOURS8){
@@ -585,7 +653,10 @@ public enum Talent {
 		}
 	}
 
+	//강화 주문서 사용
 	public static void onUpgradeScrollUsed( Hero hero ){
+		DeviceCompat.log("DEBUG",hero.name() + "(이)가 강화 주문서 사용");
+		//정신 회복의 강화
 		if (hero.hasTalent(RECOVERY_UPGRADE))
 		{
 			AnnihilationGear Gear = hero.belongings.getItem(AnnihilationGear.class);
@@ -597,13 +668,17 @@ public enum Talent {
 	}
 
 	public static void onArtifactUsed( Hero hero ){
+		DeviceCompat.log("DEBUG","onArtifactUsed");
 		if (hero.hasTalent(ENHANCED_RINGS)){
 			Buff.prolong(hero, EnhancedRings.class, 2.5f*hero.pointsInTalent(ENHANCED_RINGS));
 		}
 	}
 
 
+	//스킬북 사용
 	public static void onSkillUsed( Hero hero) {
+		DeviceCompat.log("DEBUG",hero.name() +"(이)가 스킬 사용");
+		//아츠 흡수
 		if (hero.hasTalent(ENERGIZING_UPGRADE)){
 			MagesStaff staff = hero.belongings.getItem(MagesStaff.class);
 			if (staff != null){
@@ -632,10 +707,14 @@ public enum Talent {
 		}
 	}
 
+	//아이템 장착
 	public static void onItemEquipped( Hero hero, Item item ){
+		DeviceCompat.log("DEBUG",hero.name()+"(이)가 " + item.name()+" 장착");
+		//장인의 직감
 		if (hero.pointsInTalent(ARMSMASTERS_INTUITION) == 2 && (item instanceof Weapon || item instanceof Armor)){
 			item.identify();
 		}
+		//늑대의 직감
 		if (hero.hasTalent(THIEFS_INTUITION) && item instanceof Ring){
 			if (hero.pointsInTalent(THIEFS_INTUITION) == 2){
 				item.identify();
@@ -646,33 +725,40 @@ public enum Talent {
 
 	}
 
+	//아이템 획득
 	public static void onItemCollected( Hero hero, Item item ){
+		DeviceCompat.log("DEBUG", hero.name() + "(이)가 " + item.name()+" 획득");
+		//늑대의 직감
 		if (hero.pointsInTalent(THIEFS_INTUITION) == 2){
 			if (item instanceof Ring) ((Ring) item).setKnown();
 		}
 	}
 
 	//note that IDing can happen in alchemy scene, so be careful with VFX here
+	//아이템 감정
 	public static void onItemIdentified( Hero hero, Item item ){
+		DeviceCompat.log("DEBUG",hero.name()+"(이)가 " + item.name()+"을(를) 감정");
+		//엘리트 오퍼레이터
 		if (hero.hasTalent(TEST_SUBJECT)){
 			//heal for 4 / 6
 			hero.HP = Math.min(hero.HP + 2 + (hero.pointsInTalent(TEST_SUBJECT) * 2), hero.HT);
 			Emitter e = hero.sprite.emitter();
 			if (e != null) e.burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(TEST_SUBJECT));
 		}
+		//해답 찾기
 		if (hero.hasTalent(TESTED_HYPOTHESIS)){
 			//2/3 turns of wand recharging
 			Buff.affect(hero, Recharging.class, 3f + hero.pointsInTalent(TESTED_HYPOTHESIS));
 			ScrollOfRecharging.charge(hero);
 		}
-
+		//초감각
 		if (hero.hasTalent(NYANGING)) {
 			AnnihilationGear Gear = hero.belongings.getItem(AnnihilationGear.class);
 		if (Gear != null) {
 			Gear.charge = Math.min(hero.pointsInTalent(NYANGING) + Gear.charge, Gear.chargeCap +4);
 			Gear.updateQuickslot();
 		}}
-
+		//기사의 맹새
 		if (hero.hasTalent(KNIGTS_OATH)){
 			SealOfLight Seal = hero.belongings.getItem(SealOfLight.class);
 			if (hero.belongings.getItem(SealOfLight.class) != null)
@@ -684,20 +770,22 @@ public enum Talent {
 	}
 
 	public static int onAttackProc( Hero hero, Char enemy, int dmg ){
+		DeviceCompat.log("DEBUG",hero.name() + "(이)가 "+ enemy.name()+  "을(를) 공격 ("+dmg+"의 피해)");
+		//암살자의 신조
 		if (hero.hasTalent(Talent.ASSASSINSCREED)
 				&& enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)
 				&& enemy.buff(SuckerPunchTracker.class) == null){
 			dmg *= 1f + hero.pointsInTalent(Talent.ASSASSINSCREED) * 0.05;
 			Buff.affect(enemy, SuckerPunchTracker.class);
 		}
-
+		//불시의 타격
 		if (hero.hasTalent(Talent.SUCKER_PUNCH)
 				&& enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)
 				&& enemy.buff(SuckerPunchTracker.class) == null){
 			dmg += Random.IntRange(hero.pointsInTalent(Talent.SUCKER_PUNCH) , 3);
 			Buff.affect(enemy, SuckerPunchTracker.class);
 		}
-
+		//그림자 사냥꾼
 		if (hero.hasTalent(Talent.SHADOW_HUNTER)
 				&& enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)){
 			if (Random.Int(20) < hero.pointsInTalent(SHADOW_HUNTER)) {
@@ -705,7 +793,7 @@ public enum Talent {
 				if (mark != null) mark.gainCharge();
 			}
 		}
-
+		//추가 타격
 		if (hero.hasTalent(Talent.FOLLOWUP_STRIKE)) {
 			if (hero.belongings.weapon instanceof MissileWeapon) {
 				Buff.affect(enemy, FollowupStrikeTracker.class);
@@ -716,6 +804,10 @@ public enum Talent {
 				}
 				enemy.buff(FollowupStrikeTracker.class).detach();
 			}
+		}
+		//날카로운 도끼
+		if(hero.hasTalent(Talent.SHARP_AXE)) {
+			Buff.affect(enemy, Bleeding.class).set(hero.pointsInTalent(Talent.SHARP_AXE));
 		}
 
 		return dmg;
@@ -760,6 +852,9 @@ public enum Talent {
 			case CHEN:
 				Collections.addAll(tierTalents, PARING, POLICE_SENSE, CONTINUOUS_CUT, ZANTETSUKEN, GENIUS);
 				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, SHARP_AXE, RUNAWAY, BLOODFEST);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			talents.get(0).put(talent, 0);
@@ -788,6 +883,9 @@ public enum Talent {
 				break;
 			case CHEN:
 				Collections.addAll(tierTalents, LATENT_MEAL, SCOLDING, DRAGONS_SWORD, GALLOP, TARGET_FOCUSING);
+				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, TEMP_JACKIE_TIER2);
 				break;
 		}
 		for (Talent talent : tierTalents){
@@ -818,6 +916,9 @@ public enum Talent {
 			case CHEN:
 				Collections.addAll(tierTalents);
 				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, TEMP_JACKIE_TIER3);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			talents.get(2).put(talent, 0);
@@ -846,6 +947,9 @@ public enum Talent {
 				break;
 			case CHEN:
 				Collections.addAll(tierTalents);
+				break;
+			case JACKIE:
+				Collections.addAll(tierTalents, TEMP_JACKIE_TIER4);
 				break;
 		}
 		for (Talent talent : tierTalents){
@@ -929,6 +1033,12 @@ public enum Talent {
 			case SPSHOOTER:
 				Collections.addAll(tierTalents, GORGEOUS_VACATION, TAC_DEF, PINPOINT, FRUGALITY, WATER_PLAY);
 				break;
+			case EXECUTIONER:
+				Collections.addAll(tierTalents, TEMP_EXECUTIONER_TIER3);
+				break;
+			case SLAYER:
+				Collections.addAll(tierTalents, TEMP_SLAYER_TIER3);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			talents.get(2).put(talent, 0);
@@ -996,6 +1106,12 @@ public enum Talent {
 				break;
 			case SPSHOOTER:
 				Collections.addAll(tierTalents, TAC_SHOT, TECHNICAL, ZERO_RANGE_SHOT, BF_RULL);
+				break;
+			case EXECUTIONER:
+				Collections.addAll(tierTalents, TEMP_EXECUTIONER_TIER4);
+				break;
+			case SLAYER:
+				Collections.addAll(tierTalents, TEMP_SLAYER_TIER4);
 				break;
 		}
 		for (Talent talent : tierTalents){

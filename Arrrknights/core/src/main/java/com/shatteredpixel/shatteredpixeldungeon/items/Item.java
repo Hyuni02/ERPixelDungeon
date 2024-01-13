@@ -127,6 +127,7 @@ public class Item implements Bundlable {
 		return actions;
 	}
 	
+	//아이템 줍기
 	public boolean doPickUp( Hero hero ) {
 		if (collect( hero.belongings.backpack )) {
 

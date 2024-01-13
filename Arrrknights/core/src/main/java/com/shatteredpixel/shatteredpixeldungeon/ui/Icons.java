@@ -107,6 +107,7 @@ public enum Icons {
 	ROSEMARI,
 	RISKARM,
 	CHEN,
+	JACKIE,
 	HYPER,
 	MONNY,
 
@@ -308,6 +309,7 @@ public enum Icons {
 				icon.frame(icon.texture.uvRect(96, 96, 128, 128));
 				icon.scale.set(PixelScene.align(0.49f));
 				break;
+
 			//타이틀 이미지들 ↓
 			case ARKPD:
 				icon.frame(icon.texture.uvRect(0, 192, 32, 224));
@@ -353,6 +355,9 @@ public enum Icons {
 				break;
 			case CHEN:
 				icon.frame(icon.texture.uvRect(140, 128, 160, 148));
+				break;
+			case JACKIE:
+				icon.frame(icon.texture.uvRect(160, 128, 180, 148));
 				break;
 			//변경화면 아이콘들
 			case BUG_KILL:

@@ -55,6 +55,7 @@ public class Badges {
 		MASTERY_ROSECAT,
 		MASTERY_NEARL,
 		MASTERY_CHEN,
+		MASTERY_JACKIE,
 //한 줄당 16칸, 모든 위치는 현재 좌표보다 1을 빼서 추가할것
 		//bronze
 		UNLOCK_MAGE                 ( 1 ),

@@ -41,6 +41,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Light;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.MagicalSight;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.MindVision;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Preparation;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Runaway;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Sleep;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.SoulMark;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Stamina;
@@ -91,6 +92,7 @@ import com.shatteredpixel.shatteredpixeldungeon.utils.BArray;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
@@ -744,28 +746,38 @@ public abstract class Mob extends Char {
 		}
 	}
 	
+	//사망
 	@Override
 	public void die( Object cause ) {
-
+		DeviceCompat.log("DEBUG", this.name() + " 쓰러짐");
 		if (cause == Chasm.class){
 			//50% chance to round up, 50% to round down
 			if (EXP % 2 == 1) EXP += Random.Int(2);
 			EXP /= 2;
 		}
 
-		if (alignment == Alignment.ENEMY){
+		if (alignment == Alignment.ENEMY) {
 			rollToDropLoot();
 
 			if (cause == Dungeon.hero
 					&& Dungeon.hero.hasTalent(Talent.LETHAL_MOMENTUM)
-					&& Random.Float() < 0.3f + 0.25f* Dungeon.hero.pointsInTalent(Talent.LETHAL_MOMENTUM)){
+					&& Random.Float() < 0.3f + 0.25f * Dungeon.hero.pointsInTalent(Talent.LETHAL_MOMENTUM)) {
 				Buff.affect(Dungeon.hero, Talent.LethalMomentumTracker.class, 1f);
 			}
 
 
 			if (cause == Dungeon.hero
-			&& Dungeon.hero.hasTalent(Talent.DURABLE_PROJECTILES)) {
-				Buff.affect(Dungeon.hero, Stamina.class, 1+Dungeon.hero.pointsInTalent(Talent.DURABLE_PROJECTILES));
+					&& Dungeon.hero.hasTalent(Talent.DURABLE_PROJECTILES)) {
+				Buff.affect(Dungeon.hero, Stamina.class, 1 + Dungeon.hero.pointsInTalent(Talent.DURABLE_PROJECTILES));
+			}
+			
+			//폭주 발동
+			if (cause == Dungeon.hero && Dungeon.hero.hasTalent(Talent.RUNAWAY)) {
+				Buff.affect(Dungeon.hero, Runaway.class, 4*Dungeon.hero.pointsInTalent(Talent.RUNAWAY));
+			}
+			//피의 축제 발동
+			if (cause == Dungeon.hero && Dungeon.hero.hasTalent(Talent.BLOODFEST)) {
+				Dungeon.hero.HP = Math.min(Dungeon.hero.HP + (int)(Dungeon.hero.HT * 0.1 * Dungeon.hero.pointsInTalent(Talent.BLOODFEST)), Dungeon.hero.HT);
 			}
 		}
 

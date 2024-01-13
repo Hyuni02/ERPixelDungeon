@@ -63,6 +63,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Skill.SK3.BookTrueSilverSl
 import com.shatteredpixel.shatteredpixeldungeon.items.Skill.SkillBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClothArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.armor.FabricArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.LeatherArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.MailArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.PlateArmor;
@@ -185,6 +186,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.FlameKatana;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.FlametailSword;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.FolkSong;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Gauntlet;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Hatchet;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.KazemaruWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.LoneJourney;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.ShadowFirmament;
@@ -428,9 +430,10 @@ public class Generator {
                     Dagger.class,
                     MagesStaff.class,
                     EX42.class,
-                    NEARL_AXE.class
+                    NEARL_AXE.class,
+                    Hatchet.class
             };
-            WEP_T1.probs = new float[]{1, 1, 1, 0, 1, 1};
+            WEP_T1.probs = new float[]{1, 1, 1, 0, 1, 1, 1};
 
             WEP_T2.classes = new Class<?>[]{
                     Shortsword.class,
@@ -502,8 +505,10 @@ public class Generator {
                     LeatherArmor.class,
                     MailArmor.class,
                     ScaleArmor.class,
-                    PlateArmor.class};
-            ARMOR.probs = new float[]{0, 0, 0, 0, 0};
+                    PlateArmor.class,
+                    FabricArmor.class
+            };
+            ARMOR.probs = new float[]{0, 0, 0, 0, 0, 0};
 
             //see Generator.randomMissile
             MISSILE.classes = new Class<?>[]{};
