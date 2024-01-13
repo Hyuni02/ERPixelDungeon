@@ -27,6 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ArtifactRecharge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Bleeding;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Blindness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
@@ -806,8 +807,8 @@ public enum Talent {
 			}
 		}
 		//날카로운 도끼
-		if(hero.hasTalent(Talent.SHARP_AXE)){
-			//todo 적에게 출혈 부여
+		if(hero.hasTalent(Talent.SHARP_AXE)) {
+			Buff.affect(enemy, Bleeding.class).set(hero.pointsInTalent(Talent.SHARP_AXE));
 		}
 
 		return dmg;
