@@ -546,7 +546,7 @@
              case CHEN:
                  return Assets.Splashes.CHEN;
              case JACKIE:
-                 return Assets.Splashes.JACKIE; //todo 재키 스플레쉬 아트 변경
+                 return Assets.Splashes.JACKIE;
          }
      }
 

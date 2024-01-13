@@ -735,6 +735,7 @@ public enum Talent {
 	}
 
 	//note that IDing can happen in alchemy scene, so be careful with VFX here
+	//아이템 감정
 	public static void onItemIdentified( Hero hero, Item item ){
 		DeviceCompat.log("DEBUG",hero.name()+"(이)가 " + item.name()+"을(를) 감정");
 		//엘리트 오퍼레이터

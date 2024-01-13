@@ -776,7 +776,7 @@ public abstract class Mob extends Char {
 			}
 			//피의 축제 발동
 			if (cause == Dungeon.hero && Dungeon.hero.hasTalent(Talent.BLOODFEST)) {
-				//todo 피의 축제 구현(체력회복)
+				Dungeon.hero.HP = Math.min(Dungeon.hero.HP + (int)(Dungeon.hero.HT * 0.1 * Dungeon.hero.pointsInTalent(Talent.BLOODFEST)), Dungeon.hero.HT);
 			}
 		}
 
