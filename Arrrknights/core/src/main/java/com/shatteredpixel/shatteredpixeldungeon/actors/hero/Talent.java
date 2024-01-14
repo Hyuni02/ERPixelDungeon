@@ -673,8 +673,7 @@ public enum Talent {
 			Buff.prolong(hero, EnhancedRings.class, 2.5f*hero.pointsInTalent(ENHANCED_RINGS));
 		}
 	}
-
-
+	
 	//스킬북 사용
 	public static void onSkillUsed( Hero hero) {
 		DeviceCompat.log("DEBUG",hero.name() +"(이)가 스킬 사용");
@@ -769,6 +768,7 @@ public enum Talent {
 		}
 	}
 
+	//근접 공격
 	public static int onAttackProc( Hero hero, Char enemy, int dmg ){
 		DeviceCompat.log("DEBUG",hero.name() + "(이)가 "+ enemy.name()+  "을(를) 공격 ("+dmg+"의 피해)");
 		//암살자의 신조
