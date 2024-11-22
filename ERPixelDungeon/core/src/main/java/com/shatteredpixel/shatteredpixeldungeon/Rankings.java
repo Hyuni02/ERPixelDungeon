@@ -36,7 +36,7 @@ import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.ui.QuickSlotButton;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndRanking;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
 
@@ -238,7 +238,7 @@ public enum Rankings {
 		try {
 			Bundle bundle = FileUtils.bundleFromFile( RANKINGS_FILE );
 			
-			for (Bundlable record : bundle.getCollection( RECORDS )) {
+			for (IBundlable record : bundle.getCollection( RECORDS )) {
 				records.add( (Record)record );
 			}
 			lastRecord = bundle.getInt( LATEST );
@@ -261,7 +261,7 @@ public enum Rankings {
 		}
 	}
 	
-	public static class Record implements Bundlable {
+	public static class Record implements IBundlable {
 
 		private static final String CAUSE   = "cause";
 		private static final String WIN		= "win";

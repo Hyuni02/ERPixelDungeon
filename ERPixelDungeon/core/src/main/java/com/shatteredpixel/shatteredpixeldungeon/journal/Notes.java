@@ -24,7 +24,7 @@ package com.shatteredpixel.shatteredpixeldungeon.journal;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.Key;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ import java.util.Collections;
 
 public class Notes {
 	
-	public static abstract class Record implements Comparable<Record>, Bundlable {
+	public static abstract class Record implements Comparable<Record>, IBundlable {
 		
 		protected int depth;
 
@@ -191,7 +191,7 @@ public class Notes {
 	
 	public static void restoreFromBundle( Bundle bundle ) {
 		records = new ArrayList<>();
-		for (Bundlable rec : bundle.getCollection( RECORDS ) ) {
+		for (IBundlable rec : bundle.getCollection( RECORDS ) ) {
 			records.add( (Record) rec );
 		}
 	}

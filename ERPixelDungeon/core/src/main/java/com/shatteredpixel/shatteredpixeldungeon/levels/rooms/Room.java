@@ -22,7 +22,7 @@
 package com.shatteredpixel.shatteredpixeldungeon.levels.rooms;
 
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Graph;
 import com.watabou.utils.Point;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-public abstract class Room extends Rect implements Graph.Node, Bundlable {
+public abstract class Room extends Rect implements Graph.Node, IBundlable {
 	
 	public ArrayList<Room> neigbours = new ArrayList<>();
 	public LinkedHashMap<Room, Door> connected = new LinkedHashMap<>();
@@ -402,7 +402,7 @@ public abstract class Room extends Rect implements Graph.Node, Bundlable {
 		//does nothing by default
 	}
 	
-	public static class Door extends Point implements Bundlable {
+	public static class Door extends Point implements IBundlable {
 		
 		public enum Type {
 			EMPTY, TUNNEL, WATER, REGULAR, UNLOCKED, HIDDEN, BARRICADE, LOCKED

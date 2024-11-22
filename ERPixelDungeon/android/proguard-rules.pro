@@ -4,7 +4,7 @@
 
 # keep members of classes that are instantiated via reflection
 -keepclassmembers class * extends com.watabou.glscripts.Script
--keepclassmembers class * implements com.watabou.utils.Bundlable
+-keepclassmembers class * implements com.watabou.utils.IBundlable
 
 # retained to support meaningful stack traces
 # note that the mapping file must be referenced in order to make sense of line numbers

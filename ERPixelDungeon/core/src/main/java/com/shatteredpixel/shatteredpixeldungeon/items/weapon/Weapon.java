@@ -74,7 +74,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
@@ -465,7 +465,7 @@ abstract public class Weapon extends KindOfWeapon {
 		return enchantment != null && (cursedKnown || !enchantment.curse()) ? enchantment.glowing() : null;
 	}
 
-	public static abstract class Enchantment implements Bundlable {
+	public static abstract class Enchantment implements IBundlable {
 
 		private static final Class<?>[] common = new Class<?>[]{
 				Blazing.class, Chilling.class, Kinetic.class, Shocking.class,};

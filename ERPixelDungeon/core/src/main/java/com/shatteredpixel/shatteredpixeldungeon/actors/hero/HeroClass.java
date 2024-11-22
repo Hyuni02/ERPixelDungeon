@@ -416,7 +416,7 @@
          new DewVial().collect();
      }
 
-     private void initJackie(Hero hero){
+     private void initJackie(Hero hero) {
          (hero.belongings.weapon = new Hatchet()).identify();
 
          new PotionBandolier().collect();

@@ -52,7 +52,6 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Originiutant;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.YogFist;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Lens;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Sheep;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.FlowParticle;
@@ -65,8 +64,6 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Torch;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
-import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfAmplified;
-import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfAssassin;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfIntuition;
@@ -91,7 +88,7 @@ import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Point;
@@ -105,7 +102,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public abstract class Level implements Bundlable {
+public abstract class Level implements IBundlable {
 	
 	public static enum Feeling {
 		NONE,
@@ -346,39 +343,39 @@ public abstract class Level implements Bundlable {
 
 		locked      = bundle.getBoolean( LOCKED );
 		
-		Collection<Bundlable> collection = bundle.getCollection( HEAPS );
-		for (Bundlable h : collection) {
+		Collection<IBundlable> collection = bundle.getCollection( HEAPS );
+		for (IBundlable h : collection) {
 			Heap heap = (Heap)h;
 			if (!heap.isEmpty())
 				heaps.put( heap.pos, heap );
 		}
 		
 		collection = bundle.getCollection( PLANTS );
-		for (Bundlable p : collection) {
+		for (IBundlable p : collection) {
 			Plant plant = (Plant)p;
 			plants.put( plant.pos, plant );
 		}
 
 		collection = bundle.getCollection( TRAPS );
-		for (Bundlable p : collection) {
+		for (IBundlable p : collection) {
 			Trap trap = (Trap)p;
 			traps.put( trap.pos, trap );
 		}
 
 		collection = bundle.getCollection( CUSTOM_TILES );
-		for (Bundlable p : collection) {
+		for (IBundlable p : collection) {
 			CustomTilemap vis = (CustomTilemap)p;
 			customTiles.add(vis);
 		}
 
 		collection = bundle.getCollection( CUSTOM_WALLS );
-		for (Bundlable p : collection) {
+		for (IBundlable p : collection) {
 			CustomTilemap vis = (CustomTilemap)p;
 			customWalls.add(vis);
 		}
 		
 		collection = bundle.getCollection( MOBS );
-		for (Bundlable m : collection) {
+		for (IBundlable m : collection) {
 			Mob mob = (Mob)m;
 			if (mob != null) {
 				mobs.add( mob );
@@ -386,7 +383,7 @@ public abstract class Level implements Bundlable {
 		}
 		
 		collection = bundle.getCollection( BLOBS );
-		for (Bundlable b : collection) {
+		for (IBundlable b : collection) {
 			Blob blob = (Blob)b;
 			blobs.put( blob.getClass(), blob );
 		}

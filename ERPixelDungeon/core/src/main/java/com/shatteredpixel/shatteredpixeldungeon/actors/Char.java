@@ -34,7 +34,6 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ChampionEnemy;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Charm;
-import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ChenCombo;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Chill;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Corrosion;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Corruption;
@@ -120,7 +119,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.utils.BArray;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -134,8 +133,8 @@ public abstract class Char extends Actor {
 	
 	public CharSprite sprite;
 	
-	public int HT;
-	public int HP;
+	public int HT; //최대 체력
+	public int HP; //현재 체력
 	
 	protected float baseSpeed	= 1;
 	protected PathFinder.Path path;
@@ -293,7 +292,7 @@ public abstract class Char extends Actor {
 		HP = bundle.getInt( TAG_HP );
 		HT = bundle.getInt( TAG_HT );
 		
-		for (Bundlable b : bundle.getCollection( BUFFS )) {
+		for (IBundlable b : bundle.getCollection( BUFFS )) {
 			if (b != null) {
 				((Buff)b).attachTo( this );
 			}

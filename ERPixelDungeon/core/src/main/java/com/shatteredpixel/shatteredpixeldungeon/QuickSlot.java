@@ -22,8 +22,7 @@
 package com.shatteredpixel.shatteredpixeldungeon;
 
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
-import com.shatteredpixel.shatteredpixeldungeon.ui.QuickSlotButton;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
@@ -154,11 +153,11 @@ public class QuickSlot {
 	}
 
 	public void restorePlaceholders(Bundle bundle){
-		Collection<Bundlable> placeholders = bundle.getCollection(PLACEHOLDERS);
+		Collection<IBundlable> placeholders = bundle.getCollection(PLACEHOLDERS);
 		boolean[] placements = bundle.getBooleanArray( PLACEMENTS );
 
 		int i = 0;
-		for (Bundlable item : placeholders){
+		for (IBundlable item : placeholders){
 			while (!placements[i]) i++;
 			setSlot( i, (Item)item );
 			i++;

@@ -47,7 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.utils.BArray;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.Tilemap;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -122,7 +122,7 @@ public class OldPrisonBossLevel extends Level {
 			}
 		}
 
-		for (Bundlable item : bundle.getCollection(STORED_ITEMS)){
+		for (IBundlable item : bundle.getCollection(STORED_ITEMS)){
 			storedItems.add( (Item)item );
 		}
 	}

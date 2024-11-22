@@ -26,13 +26,13 @@ import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.SparseArray;
 
 import java.util.HashSet;
 
-public abstract class Actor implements Bundlable {
+public abstract class Actor implements IBundlable {
 	
 	public static final float TICK	= 1f;
 

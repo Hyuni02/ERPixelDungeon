@@ -26,10 +26,10 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.NoosaScript;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.Tilemap;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 
-public abstract class CustomTilemap implements Bundlable {
+public abstract class CustomTilemap implements IBundlable {
 
 	protected static final int SIZE = DungeonTilemap.SIZE;
 

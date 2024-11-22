@@ -67,7 +67,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.particles.Emitter;
-import com.watabou.utils.Bundlable;
+import com.watabou.utils.IBundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -633,7 +633,7 @@ public class Armor extends EquipableItem {
 		return glyph != null && (cursedKnown || !glyph.curse()) ? glyph.glowing() : null;
 	}
 	
-	public static abstract class Glyph implements Bundlable {
+	public static abstract class Glyph implements IBundlable {
 		
 		private static final Class<?>[] common = new Class<?>[]{
 				Obfuscation.class, Swiftness.class, Viscosity.class, Potential.class };

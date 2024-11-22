@@ -21,7 +21,7 @@
 
 package com.watabou.utils;
 
-public interface Bundlable {
+public interface IBundlable {
 
 	void restoreFromBundle( Bundle bundle );
 	void storeInBundle( Bundle bundle );

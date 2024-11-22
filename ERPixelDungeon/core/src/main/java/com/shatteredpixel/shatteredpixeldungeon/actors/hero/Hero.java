@@ -237,7 +237,7 @@ import java.util.LinkedHashMap;
 
 public class Hero extends Char {
 
-    // 스킨 관련
+    // <editor-fold desc="스킨 관련">
     public static final int TALULAH = 1;
     public static final int F_NOVA = 2;
     public static final int SKADI = 3;
@@ -255,19 +255,26 @@ public class Hero extends Char {
     public static final int FRANKA = 15;
     public static final int WEEDY = 16;
     public static final int GLADIIA = 17;
+    // </editor-fold>
 
+    //초기화 블럭 : 생성자 실행 전에 실행
     {
         actPriority = HERO_PRIO;
 
         alignment = Alignment.ALLY;
     }
 
-    public static final int MAX_LEVEL = 40;
+    public static final int MAX_LEVEL = 40; //영웅 최대 레벨
 
     //public static final int STARTING_STR = 100000;
+    /**초기 힘
+     */
     public static final int STARTING_STR = 10;
-
+    /** 휴식 소요 시간
+     */
     private static final float TIME_TO_REST = 1f;
+    /** 탐색 소요 시간
+     */
     private static final float TIME_TO_SEARCH = 2f;
     private static final float HUNGER_FOR_SEARCH = 6f;
 
@@ -293,8 +300,11 @@ public class Hero extends Char {
     public int STR;
 
     public float awareness;
-
+    /** 레벨
+     */
     public int lvl = 1;
+    /** 경험치
+     */
     public int exp = 0;
 
     public int HTBoost = 0;
@@ -309,7 +319,9 @@ public class Hero extends Char {
     private int SK2num;
     private int SK3num;
 
-    public int CharSkin = 0; // 0은 디폴트 스킨.
+    /** 스킨 코드(기본:0)
+     */
+    public int CharSkin = 0;
 
     private ArrayList<Mob> visibleEnemies;
 
@@ -322,33 +334,50 @@ public class Hero extends Char {
 
         HP = HT = 20;
         //HP = HT = 2000; //@
-        STR = STARTING_STR;
+        STR = STARTING_STR; //힘을 초기 힘으로 설정
 
         belongings = new Belongings(this);
 
         visibleEnemies = new ArrayList<>();
     }
 
+    /**
+     * 최대체력과 현재체력을 업데이트하는 함수
+     * @param boostHP 최대체력 변화에 따른 현재체력 동기화 여부
+     */
     public void updateHT(boolean boostHP) {
         int curHT = HT;
 
+        //이지모드 : 최대체력 증가량 증가
         if (Dungeon.eazymode == 1) HT = 20 + 10 * (lvl - 1) + (HTBoost * 2);
+        //일반모드
         else HT = 20 + 5 * (lvl - 1) + HTBoost;
+        //힘의 반지(힘 증가, 최대체력 증가) 효과로 최대 체력 추가 획득
         float multiplier = RingOfMight.HTMultiplier(this);
         HT = Math.round(multiplier * HT);
-
+        //용력의 영약(힘 증가, 최대체력 증가) 효과로 최대 체력 증가
         if (buff(ElixirOfMight.HTBoost.class) != null) {
             HT += buff(ElixirOfMight.HTBoost.class).boost();
         }
 
-        if (boostHP) {
-            HP += Math.max(HT - curHT, 0);
+        if (boostHP) { //현재체력도 같이 증가 여부
+            HP += Math.max(HT - curHT, 0); //최대체력 증가 시 그만큼 현재체력 증가
         }
-        if (Dungeon.isChallenged(Challenges.SPECIAL_BOSS) && Dungeon.mboss14 == 1 && Dungeon.depth == 25 && Dungeon.bossLevel() && Dungeon.talucount < 4) HT /= 2;
 
+        //아래 조건에서 최대체력 절반으로 감소
+        if (Dungeon.isChallenged(Challenges.SPECIAL_BOSS) //???
+                && Dungeon.mboss14 == 1 //???
+                && Dungeon.depth == 25 //현재 층 = 25층
+                && Dungeon.bossLevel() //현재 층 = 보스 스테이지
+                && Dungeon.talucount < 4) //???
+            HT /= 2;
+
+        //기사의 육신(투자 포인트 * 10 최대체력 증가)
         if (hasTalent(Talent.KNIGHT_BODY)) {
             HT += pointsInTalent(Talent.KNIGHT_BODY) * 10;
         }
+
+        //현재체력은 최대체력을 넘을 수 없음
         HP = Math.min(HP, HT);
     }
 
@@ -365,6 +394,7 @@ public class Hero extends Char {
         return STR;
     }
 
+    // <editor-fold desc="상수정의">
     private static final String ATTACK = "attackSkill";
     private static final String DEFENSE = "defenseSkill";
     private static final String STRENGTH = "STR";
@@ -376,7 +406,9 @@ public class Hero extends Char {
     private static final String SKL2 = "sk2num";
     private static final String SKL3 = "sk3num";
     private static final String SKIN = "charskin";
+    // </editor-fold>
 
+    //<editor-fold dec="IBundleable 구현">
     @Override
     public void storeInBundle(Bundle bundle) {
 
@@ -443,6 +475,7 @@ public class Hero extends Char {
 
         belongings.restoreFromBundle(bundle);
     }
+    //</editor-fold>
 
     public static void preview(GamesInProgress.Info info, Bundle bundle) {
         info.level = bundle.getInt(LEVEL);
@@ -456,10 +489,18 @@ public class Hero extends Char {
         Belongings.preview(info, bundle);
     }
 
+    /** 재능 보유 여부
+     * @param talent 보유를 확인할 재능
+     * @return 보유 시 true
+     */
     public boolean hasTalent(Talent talent) {
         return pointsInTalent(talent) > 0;
     }
 
+    /** 재능에 사용한 포인트 수 확인
+     * @param talent 확인할 재능
+     * @return 사용한 포인트 수
+     */
     public int pointsInTalent(Talent talent) {
         for (LinkedHashMap<Talent, Integer> tier : talents) {
             for (Talent f : tier.keySet()) {
@@ -2720,6 +2761,9 @@ public class Hero extends Char {
         SK3num = SkillNumber;
     }
 
+    /** 1스킬 세팅
+     * @param SkillNumber 스킬 번호
+     */
     private void loadSkill1(int SkillNumber) {
         switch (SkillNumber) {
             default:
@@ -2788,6 +2832,9 @@ public class Hero extends Char {
         }
     }
 
+    /** 2스킬 세팅
+     * @param SkillNumber 스킬 번호
+     */
     private void loadSkill2(int SkillNumber) {
         switch (SkillNumber) {
             default:
@@ -2856,6 +2903,9 @@ public class Hero extends Char {
         }
     }
 
+    /** 3스킬 세팅
+     * @param SkillNumber 스킬 번호
+     */
     private void loadSkill3(int SkillNumber) {
         switch (SkillNumber) {
             default:

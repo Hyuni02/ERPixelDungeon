@@ -108,7 +108,7 @@ public class Bundle {
 		return new Bundle( data.optJSONObject( key ) );
 	}
 	
-	private Bundlable get() {
+	private IBundlable get() {
 		if (data == null) return null;
 		
 		String clName = getString( CLASS_NAME );
@@ -120,7 +120,7 @@ public class Bundle {
 		//Skip none-static inner classes as they can't be instantiated through bundle restoring
 		//Classes which make use of none-static inner classes must manage instantiation manually
 		if (cl != null && (!Reflection.isMemberClass(cl) || Reflection.isStatic(cl))) {
-			Bundlable object = (Bundlable) Reflection.newInstance(cl);
+			IBundlable object = (IBundlable) Reflection.newInstance(cl);
 			if (object != null) {
 				object.restoreFromBundle(this);
 				return object;
@@ -130,7 +130,7 @@ public class Bundle {
 		return null;
 	}
 	
-	public Bundlable get( String key ) {
+	public IBundlable get(String key ) {
 		return getBundle( key ).get();
 	}
 	
@@ -245,14 +245,14 @@ public class Bundle {
 		}
 	}
 	
-	public Collection<Bundlable> getCollection( String key ) {
+	public Collection<IBundlable> getCollection(String key ) {
 		
-		ArrayList<Bundlable> list = new ArrayList<>();
+		ArrayList<IBundlable> list = new ArrayList<>();
 		
 		try {
 			JSONArray array = data.getJSONArray( key );
 			for (int i=0; i < array.length(); i++) {
-				Bundlable O = new Bundle( array.getJSONObject( i ) ).get();
+				IBundlable O = new Bundle( array.getJSONObject( i ) ).get();
 				if (O != null) list.add( O );
 			}
 		} catch (JSONException e) {
@@ -318,7 +318,7 @@ public class Bundle {
 		}
 	}
 	
-	public void put( String key, Bundlable object ) {
+	public void put( String key, IBundlable object ) {
 		if (object != null) {
 			try {
 				Bundle bundle = new Bundle();
@@ -401,9 +401,9 @@ public class Bundle {
 		}
 	}
 	
-	public void put( String key, Collection<? extends Bundlable> collection ) {
+	public void put( String key, Collection<? extends IBundlable> collection ) {
 		JSONArray array = new JSONArray();
-		for (Bundlable object : collection) {
+		for (IBundlable object : collection) {
 			//Skip none-static inner classes as they can't be instantiated through bundle restoring
 			//Classes which make use of none-static inner classes must manage instantiation manually
 			if (object != null) {
